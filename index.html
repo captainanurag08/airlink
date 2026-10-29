@@ -15,7 +15,7 @@ button.main{background:linear-gradient(90deg,var(--c),var(--v));color:#04101a;fo
 button:focus-visible,select:focus-visible,#drop:focus-visible{outline:3px solid var(--c);outline-offset:2px}
 .mu{color:var(--mu);font-size:.9rem}.hide{display:none!important}
 #drop{border:2px dashed var(--bd);border-radius:14px;padding:26px;text-align:center;cursor:pointer}#drop.on{border-color:var(--c)}
-canvas#qr{background:#fff;width:min(86vw,520px);height:auto;aspect-ratio:1;image-rendering:pixelated;border-radius:8px;display:block;margin:auto}
+canvas#qr{background:#fff;width:min(92vw,78vh,640px);height:auto;aspect-ratio:1;image-rendering:pixelated;border-radius:8px;display:block;margin:auto}
 video{width:100%;max-height:60vh;border-radius:12px;background:#000;object-fit:cover}
 .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.g div{background:var(--panel);border:1px solid var(--bd);border-radius:10px;padding:10px}.g b{display:block;font-size:1.15rem;color:var(--c)}
 progress{width:100%;height:10px;accent-color:var(--c)}
@@ -37,16 +37,18 @@ progress{width:100%;height:10px;accent-color:var(--c)}
 <div class="p hide" id="recv"><video id="v" playsinline muted></video><canvas id="cv" class="hide"></canvas>
 <div class="row" style="margin-top:10px"><button class="main" id="cam">Start camera</button><button id="tor" class="hide">Torch</button><button id="stop">Stop</button></div>
 <progress id="pg" value="0" max="1" aria-label="Recovery progress"></progress>
-<div class="g" style="margin-top:12px"><div>Unique symbols<b id="rU">0</b></div><div>Blocks solved<b id="rB">0/0</b></div><div>Frames read/s<b id="rF">0</b></div><div>Useful B/s<b id="rT">0</b></div><div>Bad/dup frames<b id="rD">0</b></div></div>
+<div class="g" style="margin-top:12px"><div>Unique symbols<b id="rU">0</b></div><div>Blocks solved<b id="rB">0/0</b></div><div>Frames read/s<b id="rF">0</b></div><div>Useful B/s<b id="rT">0</b></div><div>QR found / valid<b id="rQ">0 / 0</b></div><div>Bad/dup frames<b id="rD">0</b></div></div>
 <div id="dec" class="row hide"><input id="dpw" type="password" placeholder="Passphrase" aria-label="Passphrase"><button class="main" id="dcb">Decrypt</button></div><div id="log" class="p hide" aria-live="polite" style="max-height:220px;overflow:auto"></div><p id="rMsg" aria-live="polite"></p><a id="dl" class="hide"><button class="main">Download verified file</button></a></div>
 <div class="p hide" id="lab"><h2>Performance Lab</h2><p class="mu">Measures this device: capabilities, QR generation speed per profile, codec speed, and modelled goodput. Results contain no file data.</p><div class="row"><button class="main" id="lb">Run benchmark</button><button id="lc">Copy results</button><button id="lx">Back</button></div><pre id="lo" style="white-space:pre-wrap;word-break:break-word;font-size:.8rem" aria-live="polite"></pre></div></main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<script>function L(u){return new Promise(r=>{const s=document.createElement('script');s.src=u;s.onload=r;s.onerror=r;document.head.append(s)})}
+window.libs=(async()=>{if(typeof jsQR==='undefined')await L('https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js');if(typeof qrcode==='undefined')await L('https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js')})()</script>
 <script>
 const $=s=>document.querySelector(s),show=id=>{['home','send','recv','lab'].forEach(x=>$('#'+x).classList.toggle('hide',x!==id))};
 /* Profiles: [blockBytes, intervalMs, ECC] */
-const PROF={'Compatibility':[300,160,'L'],'Balanced':[550,110,'L'],'High Throughput':[850,75,'L'],'Maximum Practical':[1200,50,'L']};
-for(const k in PROF)$('#prof').add(new Option(k+' ('+PROF[k][0]+' B / '+PROF[k][1]+' ms)',k));$('#prof').add(new Option('Manual tuning','Manual'));$('#prof').value='Balanced';
+const PROF={'Safe':[200,200,'L'],'Compatibility':[300,160,'L'],'Balanced':[550,110,'L'],'High Throughput':[850,75,'L'],'Maximum Practical':[1200,50,'L']};
+for(const k in PROF)$('#prof').add(new Option(k+' ('+PROF[k][0]+' B / '+PROF[k][1]+' ms)',k));$('#prof').add(new Option('Manual tuning','Manual'));$('#prof').value='Safe';
 /* ---- protocol: frame = 'AQ' type ver... crc32. type0 meta, type1 data. See header layout in code ---- */
 const CT=new Uint32Array(256).map((_,n)=>{for(let k=0;k<8;k++)n=n&1?0xEDB88320^(n>>>1):n>>>1;return n>>>0});
 const crc=b=>{let c=~0;for(let i=0;i<b.length;i++)c=CT[(c^b[i])&255]^(c>>>8);return ~c>>>0};
@@ -83,7 +85,7 @@ $('#bS').onclick=()=>show('send');$('#bR').onclick=()=>{show('recv')};
 const drop=$('#drop');drop.onclick=()=>$('#f').click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('#f').click()};
 drop.ondragover=e=>{e.preventDefault();drop.classList.add('on')};drop.ondragleave=()=>drop.classList.remove('on');drop.ondrop=e=>{e.preventDefault();pick(e.dataTransfer.files[0])};$('#f').onchange=e=>pick(e.target.files[0]);
 function pick(f){if(!f)return;file=f;$('#finfo').textContent=`${f.name} (${f.size.toLocaleString()} bytes). Large files are held in memory: keep under ~300 MB.`}
-$('#go').onclick=async()=>{if(!file)return $('#finfo').textContent='Choose a file first.';clearInterval(timer);
+$('#go').onclick=async()=>{await window.libs;if(typeof qrcode==='undefined')return $('#finfo').textContent='QR library failed to load. Check your connection and reload.';if(!file)return $('#finfo').textContent='Choose a file first.';clearInterval(timer);
 const pr=$('#prof').value,[bs,ms,ecc]=pr==='Manual'?[Math.min(1800,Math.max(100,+$('#mb').value||600)),Math.max(30,+$('#mi').value||90),'L']:PROF[pr],buf=await prep(file),size=buf.length,K=KOF(size,bs),tid=crypto.getRandomValues(new Uint32Array(1))[0];
 const hash=new Uint8Array(await crypto.subtle.digest('SHA-256',buf)),name=new TextEncoder().encode(encOn?'airlink-enc.bin':file.name).slice(0,200);
 const pd=new Uint8Array(K*bs);pd.set(buf);
@@ -108,14 +110,14 @@ $('#msg').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#
 $('#pa').onclick=()=>{paused=!paused;$('#pa').textContent=paused?'Resume':'Pause'};
 $('#cx').onclick=()=>{clearInterval(timer);lock?.release?.();show('home')};
 /* ---- receiver ---- */
-let stream,raf,dec,cur,metaI,t0r,nf=0,bad=0,tf=performance.now(),lastRaw='';
+let det=0,stream,raf,dec,cur,metaI,t0r,nf=0,bad=0,tf=performance.now(),lastRaw='';
 const msg=t=>$('#rMsg').textContent=t;
-$('#cam').onclick=async()=>{try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720},frameRate:{ideal:60}}});const v=$('#v');v.srcObject=stream;await v.play();
+$('#cam').onclick=async()=>{await window.libs;if(typeof jsQR==='undefined'){msg('The QR decoder library (jsQR) could not be loaded from the CDN. Check your internet connection or content blocker, then reload.');return}try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080},frameRate:{ideal:60}}});const v=$('#v');v.srcObject=stream;await v.play();
 const tr=stream.getVideoTracks()[0];if(tr.getCapabilities?.().torch){$('#tor').classList.remove('hide');let on=0;$('#tor').onclick=()=>tr.applyConstraints({advanced:[{torch:on=!on}]})}
-try{await navigator.wakeLock?.request('screen')}catch{}msg('Scanning. Point at the sender\'s QR code.');cur=null;dec=null;nf=0;bad=0;tf=performance.now();loop()}catch(e){msg('Camera unavailable: '+e.message+' (needs HTTPS and permission).')}};
+try{await navigator.wakeLock?.request('screen')}catch{}msg('Scanning. Point at the sender\'s QR code.');cur=null;dec=null;nf=0;bad=0;tf=performance.now();loop()}catch(e){msg('Camera unavailable: '+e.name+'. '+(self!==top?'This page is embedded in a frame that blocks camera access. Download the HTML file and open it directly, or host it on HTTPS (GitHub Pages, Netlify).':'Allow camera permission for this site in the browser settings, and close other apps using the camera.'))}};
 $('#stop').onclick=()=>{cancelAnimationFrame(raf);stream?.getTracks().forEach(t=>t.stop());show('home')};
-function loop(){raf=requestAnimationFrame(loop);const v=$('#v');if(v.readyState<2)return;const sc=Math.min(1,720/v.videoWidth),w=v.videoWidth*sc|0,h=v.videoHeight*sc|0,cv=$('#cv'),x=cv.getContext('2d',{willReadFrequently:true});cv.width=w;cv.height=h;x.drawImage(v,0,0,w,h);
-const r=jsQR(x.getImageData(0,0,w,h).data,w,h,{inversionAttempts:'dontInvert'});if(!r||!r.binaryData)return;const f=open(Uint8Array.from(r.binaryData));if(!f){bad++;ui();return}
+function loop(){raf=requestAnimationFrame(loop);const v=$('#v');if(v.readyState<2)return;const sc=Math.min(1,1280/v.videoWidth),w=v.videoWidth*sc|0,h=v.videoHeight*sc|0,cv=$('#cv'),x=cv.getContext('2d',{willReadFrequently:true});cv.width=w;cv.height=h;x.drawImage(v,0,0,w,h);
+const r=jsQR(x.getImageData(0,0,w,h).data,w,h,{inversionAttempts:'dontInvert'});if(!r||!r.binaryData){if(!det&&performance.now()-tf>6000)msg('No QR detected yet. Make the QR fill 1/3 or more of the camera view, 20-40 cm away, full screen brightness, no glare, hold steady. Try the Safe profile.');return}det++;const f=open(Uint8Array.from(r.binaryData));$('#rQ').textContent=det+' / '+(nf+(f?1:0));if(!f){bad++;ui();return}
 nf++;if(cur!==f.tid){if(f.bs<16||f.bs>2900||f.size>1.5e9)return;cur=f.tid;metaI=null;dec=new Dec(KOF(f.size,f.bs),f.bs);dec.size=f.size;t0r=performance.now();$('#dl').classList.add('hide');msg('Receiving transfer '+f.tid.toString(16))}
 if(f.type===0&&f.body.length>=32&&!metaI)metaI={hash:f.body.slice(0,32),name:new TextDecoder().decode(f.body.subarray(32))};
 else if(f.type===1&&f.body.length===dec.bs){if(!dec.add(f.seed,f.body))bad++}
