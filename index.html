@@ -1,164 +1,140 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ANURAG AIRLINK QR BEAM</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ANURAG AIRLINK | FAST IMAGE LINK</title>
 <style>
-:root{--bg:#070b16;--panel:rgba(255,255,255,.06);--bd:rgba(255,255,255,.12);--tx:#e8ecf8;--mu:#8e9ab8;--c:#22d3ee;--v:#8b5cf6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f6fd;--panel:rgba(255,255,255,.8);--bd:rgba(10,20,50,.15);--tx:#0b1226;--mu:#52607f;color-scheme:light}}
-:root[data-theme="dark"]{--bg:#070b16}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 80% -10%,rgba(139,92,246,.25),transparent),radial-gradient(800px 500px at 0 0,rgba(34,211,238,.18),transparent),var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
-main{max-width:860px;margin:auto;padding:20px}h1{font-size:1.5rem;margin:.2em 0;letter-spacing:.04em}h1 b{background:linear-gradient(90deg,var(--c),var(--v));-webkit-background-clip:text;background-clip:text;color:transparent}
-.p{background:var(--panel);border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0;backdrop-filter:blur(10px)}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-input[type=number]{width:84px}textarea{width:100%;font:inherit;color:var(--tx);background:var(--panel);border:1px solid var(--bd);border-radius:10px;padding:10px;resize:vertical}textarea:focus-visible{outline:3px solid var(--c)}#qr:fullscreen{width:100vmin;height:100vmin;margin:auto}nav{position:sticky;top:0;z-index:5;padding:8px 0;backdrop-filter:blur(10px)}nav button{border-radius:999px;padding:8px 16px}nav button.act{background:linear-gradient(90deg,var(--c),var(--v));color:#04101a;border:0;font-weight:700}.vw{position:relative}.vw::after{content:"";position:absolute;inset:15% 25%;border:2px dashed var(--c);border-radius:14px;pointer-events:none;opacity:.7}.g b{font-weight:700}:root[data-theme="light"]{--bg:#f3f6fd;--panel:rgba(255,255,255,.85);--bd:rgba(10,20,50,.15);--tx:#0b1226;--mu:#52607f;color-scheme:light}#log p{margin:.3em 0;word-break:break-word;white-space:pre-wrap}button,select,input{font:inherit;color:var(--tx);background:var(--panel);border:1px solid var(--bd);border-radius:10px;padding:10px 16px;cursor:pointer}
-button.main{background:linear-gradient(90deg,var(--c),var(--v));color:#04101a;font-weight:700;border:0}
-button:focus-visible,select:focus-visible,#drop:focus-visible{outline:3px solid var(--c);outline-offset:2px}
-.mu{color:var(--mu);font-size:.9rem}.hide{display:none!important}
-#drop{border:2px dashed var(--bd);border-radius:14px;padding:26px;text-align:center;cursor:pointer}#drop.on{border-color:var(--c)}
-canvas#qr{background:#fff;width:min(92vw,78vh,640px);height:auto;aspect-ratio:1;image-rendering:pixelated;border-radius:8px;display:block;margin:auto}
-video{width:100%;max-height:60vh;border-radius:12px;background:#000;object-fit:cover}
-.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.g div{background:var(--panel);border:1px solid var(--bd);border-radius:10px;padding:10px}.g b{display:block;font-size:1.15rem;color:var(--c)}
-progress{width:100%;height:10px;accent-color:var(--c)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-body{font-family:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace}h1,h2,button,.g div{text-transform:uppercase;letter-spacing:.07em}h1{font-size:1.2rem;text-shadow:0 0 18px rgba(34,211,238,.7)}
-body::before{content:"";position:fixed;left:-50%;right:-50%;bottom:-8vh;height:60vh;z-index:-1;pointer-events:none;opacity:.4;background:linear-gradient(rgba(34,211,238,.4) 1px,transparent 1px) 0 0/60px 60px,linear-gradient(90deg,rgba(34,211,238,.4) 1px,transparent 1px) 0 0/60px 60px;transform:perspective(500px) rotateX(62deg);-webkit-mask-image:linear-gradient(transparent,#000 75%);mask-image:linear-gradient(transparent,#000 75%);animation:gr 3s linear infinite}@keyframes gr{to{background-position:0 60px,0 0}}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.55))}
-#arc{position:fixed;right:-130px;top:-130px;width:540px;height:540px;opacity:.28;pointer-events:none;z-index:-1}#arc g{transform-origin:260px 260px;animation:spin 26s linear infinite}#arc g.r{animation-duration:42s;animation-direction:reverse}@keyframes spin{to{transform:rotate(360deg)}}.pl{animation:pl 2.2s ease-in-out infinite}@keyframes pl{50%{fill-opacity:.12}}
-.p{border:1px solid rgba(34,211,238,.38);border-radius:0;background:linear-gradient(135deg,rgba(34,211,238,.09),rgba(139,92,246,.07));box-shadow:0 0 26px rgba(34,211,238,.12),inset 0 0 34px rgba(34,211,238,.05);clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px)}
-.p::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(var(--c),var(--c)) 0 0/20px 2px no-repeat,linear-gradient(var(--c),var(--c)) 0 0/2px 20px no-repeat,linear-gradient(var(--c),var(--c)) 100% 100%/20px 2px no-repeat,linear-gradient(var(--c),var(--c)) 100% 100%/2px 20px no-repeat}
-.g div{border:1px solid rgba(34,211,238,.3);border-left:3px solid var(--c);background:rgba(34,211,238,.05);border-radius:0;font-size:.72rem}.g b{font-size:1.25rem;text-shadow:0 0 12px rgba(34,211,238,.8)}
-button{border:0;border-radius:0;background:rgba(34,211,238,.12);box-shadow:inset 0 0 0 1px rgba(34,211,238,.5);clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:background .2s}button:hover{background:rgba(34,211,238,.3)}button.main{box-shadow:0 0 18px rgba(34,211,238,.45)}nav button{border-radius:0;padding:8px 16px}
-#qr{border:8px solid #fff;filter:none}.chip{font-size:.72rem;letter-spacing:.1em}.chip.ok{color:#4ade80}.chip.no{color:#f87171}
-#boot{position:fixed;inset:0;z-index:100;background:#02060f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#22d3ee;transition:opacity .6s}#boot.off{opacity:0;pointer-events:none}#boot pre{margin:0;font:inherit;min-height:7.5em;text-shadow:0 0 10px #22d3ee}
-#wheel{position:fixed;left:50%;top:50%;width:min(130vmin,1000px);height:min(130vmin,1000px);transform:translate(-50%,-50%);opacity:0;transition:opacity .8s;pointer-events:none;z-index:-1}#wheel.on{opacity:.6}#wheel g{transform-origin:400px 400px;animation:spin var(--wd,8s) linear infinite}#wheel g.b{animation-direction:reverse;animation-duration:calc(var(--wd,8s)*1.6)}#wheel g.c{animation-duration:calc(var(--wd,8s)*.6)}#wheel:not(.on) g{animation-play-state:paused}.p{backdrop-filter:blur(1.5px)}
-@media (prefers-reduced-motion:reduce){body::before,#arc g,#wheel g,.pl{animation:none}#boot{display:none}}
-</style></head><body><svg id="arc" viewBox="0 0 520 520" aria-hidden="true" fill="none" stroke="#22d3ee"><g><circle cx="260" cy="260" r="240" stroke-dasharray="4 14"/><circle cx="260" cy="260" r="215" stroke-width="3" stroke-dasharray="90 40"/></g><g class="r"><circle cx="260" cy="260" r="170" stroke-dasharray="30 10 4 10"/><circle cx="260" cy="260" r="130" stroke="#8b5cf6" stroke-width="6" stroke-dasharray="60 25"/></g><circle cx="260" cy="260" r="62"/><circle class="pl" cx="260" cy="260" r="40" fill="#22d3ee" fill-opacity=".5"/></svg><svg id="wheel" viewBox="0 0 800 800" aria-hidden="true" fill="none" stroke="#22d3ee"><g class="a"><circle cx="400" cy="400" r="385" stroke-dasharray="2 12"/><circle cx="400" cy="400" r="365" stroke-width="10" stroke-dasharray="120 60" stroke-opacity=".7"/></g><g class="b"><circle cx="400" cy="400" r="320" stroke-dasharray="40 14 6 14"/><circle cx="400" cy="400" r="290" stroke="#8b5cf6" stroke-width="14" stroke-dasharray="200 90"/></g><g class="c"><circle cx="400" cy="400" r="250" stroke-dasharray="10 10"/><path stroke-width="6" d="M400 150V230M400 570V650M150 400H230M570 400H650M223 223l57 57M520 520l57 57M577 223l-57 57M280 520l-57 57"/></g><circle cx="400" cy="400" r="340" stroke="#4ade80" stroke-width="8" stroke-linecap="round" id="wp" stroke-dasharray="2136.3" stroke-dashoffset="2136.3" transform="rotate(-90 400 400)"/><circle class="pl" cx="400" cy="400" r="110" fill="#22d3ee" fill-opacity=".25"/></svg><div id="boot" role="status"><pre id="bt"></pre><small>Tap to skip</small></div><main>
-<header class="row" style="justify-content:space-between"><h1><b>ANURAG AIRLINK</b> QR BEAM</h1><button id="th" aria-label="Toggle light or dark theme">Theme</button></header><nav class="row" aria-label="Sections"><button id="nvH">Home</button><button id="nvS">Send</button><button id="nvR">Receive</button><button id="nvC">Live chat</button><button id="nvL">Lab</button></nav>
-<div class="mu">Serverless optical file transfer: fountain-coded QR frames, scanned by a camera. Nothing leaves your devices.</div><div id="sys" class="row" aria-label="System status"></div>
-
-<div class="p" id="home"><div class="row"><button class="main" id="bS">Send file</button><button class="main" id="bR">Receive file</button><button class="main" id="bC">Live chat</button><button id="bL">Performance Lab</button><button id="bT">Codec self-test</button></div>
-<div class="g" style="margin:14px 0"><div><b>Fountain coded</b>Recovers from lost or reordered frames.</div><div><b>Private</b>Optional AES-256-GCM passphrase. No server.</div><div><b>Rugged mode</b>Small, high error-correction QR for glare and blur.</div></div><label class="mu"><input type="checkbox" id="hist"> Save activity log on this device (names, sizes, speeds; never contents)</label> <button id="hc">Clear log</button><div id="hl" class="mu"></div><p class="mu" id="tOut" aria-live="polite"></p><p class="mu" id="off" aria-live="polite"></p>
-<p class="mu">Secure context (HTTPS) is required for the camera. One-way mode: no feedback channel, so the sender never assumes a frame was received. Anyone who can record the screen can capture the data; the SHA-256 check detects corruption, not a forged sender.</p></div>
-
-<div class="p hide" id="send"><textarea id="msg" rows="2" maxlength="20000" placeholder="Live chat: type a message, press Enter to beam it as QR" aria-label="Message"></textarea><div class="row" style="margin:8px 0 14px"><button class="main" id="sm">Beam message</button></div><div id="drop" tabindex="0" role="button">Drop a file here or click to choose<input type="file" id="f" hidden></div>
-<div class="row" style="margin-top:10px"><label>Profile <select id="prof"></select></label><label>Block B <input id="mb" type="number" min="100" max="1800" value="600"></label><label>Interval ms <input id="mi" type="number" min="30" max="500" value="90"></label><label>Passphrase (optional, AES-256-GCM) <input id="pw" type="password" autocomplete="off"></label><button class="main" id="go">Start beam</button><button id="fs">Fullscreen QR</button><button id="pa">Pause</button><button id="cx">Stop</button></div>
-<p class="mu" id="finfo"></p><canvas id="qr" width="300" height="300" aria-label="Transfer QR frame"></canvas>
-<div class="g" style="margin-top:12px"><div>Frames shown<b id="sF">0</b></div><div>Payload/frame<b id="sB">-</b></div><div>Nominal B/s*<b id="sT">-</b></div><div>Min. frames needed<b id="sK">-</b></div><div>Est. time (+25%)<b id="sE">-</b></div></div>
-<p class="mu">*Nominal = bytes displayed per second, not confirmed receipt. Keep brightness high; place the receiver 20-40 cm away. Screen stays awake via wake lock where supported.</p></div>
-
-<div class="p hide" id="recv"><div class="vw"><video id="v" playsinline muted></video></div><canvas id="cv" class="hide"></canvas>
-<div class="row" style="margin-top:10px"><button class="main" id="cam">Start camera</button><button id="tor" class="hide">Torch</button><button id="stop">Stop</button></div>
-<progress id="pg" value="0" max="1" aria-label="Recovery progress"></progress><canvas id="spk" width="300" height="50" style="width:100%;height:50px" aria-label="Speed graph"></canvas><label class="mu"><input type="checkbox" id="bp"> Aim beep on each valid frame</label>
-<div class="g" style="margin-top:12px"><div>Unique symbols<b id="rU">0</b></div><div>Blocks solved<b id="rB">0/0</b></div><div>Frames read/s<b id="rF">0</b></div><div>Useful B/s<b id="rT">0</b></div><div>ETA<b id="rE">-</b></div><div>QR found / valid<b id="rQ">0 / 0</b></div><div>Bad/dup frames<b id="rD">0</b></div></div>
-<div id="dec" class="row hide"><input id="dpw" type="password" placeholder="Passphrase" aria-label="Passphrase"><button class="main" id="dcb">Decrypt</button></div><div id="log" class="p hide" aria-live="polite" style="max-height:220px;overflow:auto"></div><p id="rMsg" aria-live="polite"></p><a id="dl" class="hide"><button class="main">Download verified file</button></a></div>
-<div class="p hide" id="lab"><h2>Performance Lab</h2><p class="mu">Measures this device: capabilities, QR generation speed per profile, codec speed, and modelled goodput. Results contain no file data.</p><div class="row"><button class="main" id="lb">Run benchmark</button><button id="lc">Copy results</button><button id="lx">Back</button></div><pre id="lo" style="white-space:pre-wrap;word-break:break-word;font-size:.8rem" aria-live="polite"></pre></div></main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
-<script>function L(u){return new Promise(r=>{const s=document.createElement('script');s.src=u;s.onload=r;s.onerror=r;document.head.append(s)})}
-window.libs=(async()=>{const LB={jsQR:'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js',qrcode:'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js'},has=k=>typeof window[k]!=='undefined';for(const k in LB){let c=null;try{c=localStorage.getItem('al:'+k)}catch{}if(!has(k)&&c)try{(0,eval)(c)}catch{}if(!has(k))await L(LB[k]);if(!has(k))try{(0,eval)(await(await fetch(LB[k])).text())}catch{}if(has(k)&&!c)try{localStorage.setItem('al:'+k,await(await fetch(LB[k])).text())}catch{}}})()</script>
+:root{color-scheme:dark;--bg:#060b18;--panel:#101a2e;--line:#23415a;--cyan:#22d3ee;--violet:#8b5cf6;--text:#eaf3ff;--muted:#9bb0c9}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0,#12344b 0,transparent 40%),radial-gradient(ellipse at 90% 15%,#29174b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 system-ui,Segoe UI,sans-serif}
+main{max-width:850px;margin:auto;padding:22px}h1{letter-spacing:.08em;font-size:1.35rem}h1 span{color:var(--cyan)}.sub{color:var(--muted)}.panel{background:linear-gradient(145deg,#11243aee,#101326ee);border:1px solid var(--line);padding:18px;margin:15px 0;border-radius:17px;box-shadow:0 12px 40px #0005}
+.tabs,.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}button{border:1px solid #2c5871;background:#142b40;color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer}button.primary{background:linear-gradient(90deg,var(--cyan),var(--violet));color:#06101c;border:0;font-weight:750}button:disabled{opacity:.45;cursor:not-allowed}textarea{width:100%;min-height:120px;background:#071321;color:var(--text);border:1px solid #31506b;border-radius:10px;padding:12px;font:12px ui-monospace,monospace;overflow-wrap:anywhere}input[type=file]{max-width:100%}progress{width:100%;height:13px;accent-color:var(--cyan)}.muted{color:var(--muted);font-size:.9rem}.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat div{background:#071321;border:1px solid #1d3b53;padding:12px;border-radius:10px}.stat b{display:block;color:var(--cyan);font-size:1.1rem}.hidden{display:none!important}#preview{max-width:100%;max-height:300px;border-radius:12px;margin-top:10px}#status{padding:10px;border-left:3px solid var(--cyan);background:#0a1a29;white-space:pre-wrap;overflow-wrap:anywhere}.step{border:1px solid #25465e;border-radius:12px;padding:12px;margin:10px 0}.step h3{margin:0 0 8px;font-size:1rem;color:var(--cyan)}@media(max-width:560px){main{padding:13px}.stat{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body><main>
+<h1>ANURAG <span>AIRLINK</span> / FAST IMAGE LINK</h1>
+<p class="sub">Direct browser-to-browser image transfer using WebRTC. No cloud file upload. Pairing uses a manual one-time offer/answer exchange.</p>
+<div class="panel">
+<div class="row"><span id="state">● Not connected</span><span class="muted">| WebRTC data channel</span></div>
+<p class="muted">Both devices need this page open. Create an offer on the sending device, transfer the offer text to the receiving device, then return its answer text to the sender. After pairing, image bytes travel directly between browsers when the network permits.</p>
+</div>
+<div class="panel">
+<h2>1. Pair devices</h2>
+<div class="step">
+<h3>Sending device</h3>
+<div class="row"><button class="primary" id="makeOffer">Create connection offer</button><button id="copyOffer" disabled>Copy offer</button></div>
+<textarea id="offerOut" placeholder="Your connection offer appears here..." readonly></textarea>
+<p class="muted">Send this offer text to the receiving device using a method you trust.</p>
+<label>Paste receiver's answer here</label><textarea id="answerIn" placeholder="Paste answer from receiving device"></textarea>
+<button id="applyAnswer" class="primary">Apply answer</button>
+</div>
+<div class="step">
+<h3>Receiving device</h3>
+<label>Paste sender's offer here</label><textarea id="offerIn" placeholder="Paste offer from sending device"></textarea>
+<div class="row"><button class="primary" id="makeAnswer">Create answer</button><button id="copyAnswer" disabled>Copy answer</button></div>
+<textarea id="answerOut" placeholder="Your answer appears here..." readonly></textarea>
+<p class="muted">Send the answer text back to the sender. Keep the pairing exchange private: it contains connection details for this session.</p>
+</div>
+</div>
+<div class="panel">
+<h2>2. Send an image</h2>
+<input id="file" type="file" accept="image/*">
+<p id="fileInfo" class="muted">Choose an image. The original file is sent without recompression.</p>
+<div class="row"><button id="send" class="primary" disabled>Send image</button><button id="cancel" disabled>Close connection</button></div>
+<progress id="progress" max="1" value="0"></progress>
+<div class="stat"><div>Transferred<b id="bytes">0 B</b></div><div>Live speed<b id="speed">0 B/s</b></div><div>Elapsed<b id="elapsed">0.0 s</b></div></div>
+<p id="status" role="status" aria-live="polite">Waiting for pairing.</p>
+</div>
+<div class="panel">
+<h2>3. Received image</h2>
+<p class="muted">The receiver verifies the complete file with SHA-256 before enabling the download.</p>
+<img id="preview" class="hidden" alt="Received image preview">
+<div class="row"><a id="download" class="hidden" download="airlink-image"><button class="primary">Download verified image</button></a></div>
+</div>
+<p class="muted">Speed note: 10 seconds is a target, not a guarantee. Actual speed depends on image size, Wi-Fi/mobile network, browser and whether a direct route can be established. This version uses public STUN servers but no TURN relay, so some networks may block direct connectivity. Use HTTPS or localhost.</p>
+</main>
 <script>
-const $=s=>document.querySelector(s),show=id=>{['home','send','recv','lab'].forEach(x=>$('#'+x).classList.toggle('hide',x!==id))};
-/* Profiles: [blockBytes, intervalMs, ECC] */
-const PROF={'Safe':[200,200,'L'],'Rugged':[150,220,'Q'],'Compatibility':[300,160,'L'],'Balanced':[550,110,'L'],'High Throughput':[850,75,'L'],'Maximum Practical':[1200,50,'L'],'Turbo':[1500,40,'L']};
-for(const k in PROF)$('#prof').add(new Option(k+' ('+PROF[k][0]+' B / '+PROF[k][1]+' ms)',k));$('#prof').add(new Option('Manual tuning','Manual'));$('#prof').value='Safe';
-/* ---- protocol: frame = 'AQ' type ver... crc32. type0 meta, type1 data. See header layout in code ---- */
-const CT=new Uint32Array(256).map((_,n)=>{for(let k=0;k<8;k++)n=n&1?0xEDB88320^(n>>>1):n>>>1;return n>>>0});
-const crc=b=>{let c=~0;for(let i=0;i<b.length;i++)c=CT[(c^b[i])&255]^(c>>>8);return ~c>>>0};
-const HL=17; // 'A','Q',type,tid(4),size(4),bs(2),seed(4)
-function seal(body){const o=new Uint8Array(body.length+4);o.set(body);new DataView(o.buffer).setUint32(body.length,crc(body));return o}
-function open(b){if(b.length<HL+4||b[0]!==65||b[1]!==81)return null;const d=new DataView(b.buffer,b.byteOffset,b.length);if(d.getUint32(b.length-4)!==crc(b.subarray(0,b.length-4)))return null;return{type:b[2],tid:d.getUint32(3),size:d.getUint32(7),bs:d.getUint16(11),seed:d.getUint32(13),body:b.subarray(HL,b.length-4)}}
-function hdr(type,tid,size,bs,seed,len){const o=new Uint8Array(HL+len),d=new DataView(o.buffer);o[0]=65;o[1]=81;o[2]=type;d.setUint32(3,tid);d.setUint32(7,size);d.setUint16(11,bs);d.setUint32(13,seed);return o}
-/* ---- LT fountain code: robust soliton, mulberry32 PRNG; seeds < K are systematic ---- */
-const cdfC={};
-function cdf(K){if(cdfC[K])return cdfC[K];const c=.1,dl=.5,R=c*Math.log(K/dl)*Math.sqrt(K),S=Math.max(1,Math.round(K/R)),p=new Float64Array(K+1);
-for(let i=1;i<=K;i++){p[i]=(i==1?1/K:1/(i*(i-1)));if(i<S)p[i]+=R/(i*K);else if(i==S)p[i]+=R*Math.log(R/dl)/K}
-let s=0;for(let i=1;i<=K;i++)s+=p[i];let a=0;const o=new Float64Array(K+1);for(let i=1;i<=K;i++){a+=p[i]/s;o[i]=a}return cdfC[K]=o}
-function rng(s){return()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function idxs(seed,K){if(seed<K)return[seed];const r=rng(seed*2654435761>>>0),c=cdf(K),u=r();let d=1;while(d<K&&c[d]<u)d++;const set=new Set();while(set.size<Math.min(d,K))set.add(Math.floor(r()*K));return[...set]}
-const xor=(a,b)=>{for(let i=0;i<a.length;i++)a[i]^=b[i]};
-class Dec{constructor(K,bs){this.K=K;this.bs=bs;this.blk=new Array(K).fill(null);this.n=0;this.eq=[];this.seen=new Set()}
-add(seed,pay){if(this.seen.has(seed)||this.seen.size>this.K*8)return false;this.seen.add(seed);let ix=idxs(seed,this.K),d=pay.slice();const rest=[];for(const i of ix){if(this.blk[i])xor(d,this.blk[i]);else rest.push(i)}
-if(!rest.length)return true;const q=[{ix:rest,d}];while(q.length){const e=q.pop();let r=[];for(const i of e.ix){if(this.blk[i])xor(e.d,this.blk[i]);else r.push(i)}e.ix=r;if(!r.length)continue;if(r.length>1){this.eq.push(e);continue}
-const i=r[0];this.blk[i]=e.d;this.n++;const keep=[];for(const o of this.eq){if(o.ix.includes(i))q.push(o);else keep.push(o)}this.eq=keep}return true}
-get done(){return this.n===this.K}}
-const KOF=(size,bs)=>Math.max(1,Math.ceil(size/bs));
-const b2s=a=>{let s='';for(let i=0;i<a.length;i+=8192)s+=String.fromCharCode.apply(null,a.subarray(i,i+8192));return s};
-const hex=b=>[...b].map(x=>x.toString(16).padStart(2,'0')).join('');
-const safe=n=>(n||'file').replace(/[\\/:*?"<>|\x00-\x1f]/g,'_').replace(/^\.+/,'_').slice(0,120)||'file';
-/* ---- self-test: encode, drop 30% randomly, shuffle, decode, compare ---- */
-$('#bT').onclick=async()=>{const o=$('#tOut');const size=200000+Math.floor(Math.random()*999),bs=550,data=crypto.getRandomValues(new Uint8Array(size)),K=KOF(size,bs),pd=new Uint8Array(K*bs);pd.set(data);
-const dec=new Dec(K,bs);let sent=0,got=0;const seeds=[];for(let i=0;i<K*3;i++)seeds.push(i);seeds.sort(()=>Math.random()-.5);
-for(const s of seeds){sent++;if(Math.random()<.3)continue;got++;const p=new Uint8Array(bs);for(const i of idxs(s,K))xor(p,pd.subarray(i*bs,(i+1)*bs));dec.add(s,p);dec.add(s,p);if(dec.done)break}
-let ok=dec.done;if(ok){const out=new Uint8Array(K*bs);dec.blk.forEach((b,i)=>out.set(b,i*bs));const a=out.subarray(0,size);ok=a.every((v,i)=>v===data[i])}
-o.textContent=ok?`PASS: ${size} B, K=${K}, 30% loss + duplicates + shuffled; solved after ${got} received symbols (${(got/K*100-100).toFixed(1)}% overhead).`:'FAIL: could not reconstruct';};
-/* ---- sender ---- */
-let file,timer,paused,lock,tx;
-$('#bS').onclick=()=>show('send');$('#bR').onclick=()=>{show('recv')};
-const drop=$('#drop');drop.onclick=()=>$('#f').click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('#f').click()};
-drop.ondragover=e=>{e.preventDefault();drop.classList.add('on')};drop.ondragleave=()=>drop.classList.remove('on');drop.ondrop=e=>{e.preventDefault();pick(e.dataTransfer.files[0])};$('#f').onchange=e=>pick(e.target.files[0]);
-function pick(f){if(!f)return;file=f;$('#finfo').textContent=`${f.name} (${f.size.toLocaleString()} bytes). Large files are held in memory: keep under ~300 MB.`}
-$('#go').onclick=async()=>{await window.libs;if(typeof qrcode==='undefined')return $('#finfo').textContent='QR library failed to load. Check your connection and reload.';if(!file)return $('#finfo').textContent='Choose a file first.';clearInterval(timer);
-const pr=$('#prof').value,[bs,ms,ecc]=pr==='Manual'?[Math.min(1800,Math.max(100,+$('#mb').value||600)),Math.max(30,+$('#mi').value||90),'L']:PROF[pr],buf=await prep(file),size=buf.length,K=KOF(size,bs),tid=crypto.getRandomValues(new Uint32Array(1))[0];
-const hash=new Uint8Array(await crypto.subtle.digest('SHA-256',buf)),name=new TextEncoder().encode(encOn?'airlink-enc.bin':file.name).slice(0,200);
-const pd=new Uint8Array(K*bs);pd.set(buf);
-const meta=(()=>{const h=hdr(0,tid,size,bs,0,32+name.length);h.set(hash,HL);h.set(name,HL+32);return seal(h)})();
-const c=$('#qr'),g=c.getContext('2d');let seed=0,fr=0,t0=performance.now();paused=false;$('#pa').textContent='Pause';
-try{lock=await navigator.wakeLock?.request('screen')}catch{}
-$('#sB').textContent=bs+' B';$('#sK').textContent=K;$('#sE').textContent=Math.ceil(K*1.25*ms/1000)+' s';
-function draw(bytes){const q=qrcode(0,ecc);q.addData(b2s(bytes),'Byte');q.make();const n=q.getModuleCount(),m=Math.max(2,Math.floor(900/(n+8)));c.width=c.height=(n+8)*m;g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.fillStyle='#000';for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(q.isDark(y,x))g.fillRect((x+4)*m,(y+4)*m,m,m)}
-timer=setInterval(()=>{if(paused)return;let fb;if(fr===0||fr%40===39)fb=meta;else{const p=hdr(1,tid,size,bs,seed,bs);for(const i of idxs(seed,K))for(let j=0;j<bs;j++)p[HL+j]^=pd[i*bs+j];fb=seal(p);seed++}
-draw(fb);fr++;wh(Math.min(1,seed/(K*1.3)),bs*seed/((performance.now()-t0)/1000));$('#sF').textContent=fr;$('#sT').textContent=Math.round(seed*bs/((performance.now()-t0)/1000)).toLocaleString()},ms)};
-let encOn=false,pend;
-const dk=async(pw,salt)=>{const b=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:200000,hash:'SHA-256'},b,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])};
-async function prep(f){const raw=new Uint8Array(await f.arrayBuffer()),pw=$('#pw').value;encOn=!!pw;if(!pw)return raw;const nm=new TextEncoder().encode(f.name).slice(0,200),pl=new Uint8Array(2+nm.length+raw.length);new DataView(pl.buffer).setUint16(0,nm.length);pl.set(nm,2);pl.set(raw,2+nm.length);const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},await dk(pw,salt),pl)),o=new Uint8Array(28+ct.length);o.set(salt);o.set(iv,16);o.set(ct,28);return o}
-$('#dcb').onclick=async()=>{try{const b=pend,pl=new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:b.slice(16,28)},await dk($('#dpw').value,b.slice(0,16)),b.slice(28))),n=new DataView(pl.buffer).getUint16(0),nm=new TextDecoder().decode(pl.slice(2,2+n));$('#dec').classList.add('hide');$('#dpw').value='';metaI.name=nm;await done(true,nm,pl.slice(2+n))}catch{msg('Wrong passphrase or damaged data. Try again.')}};
-const rnd=n=>{const a=new Uint8Array(n);for(let i=0;i<n;i+=65536)crypto.getRandomValues(a.subarray(i,Math.min(n,i+65536)));return a};let labR;$('#bL').onclick=()=>show('lab');$('#lx').onclick=()=>show('home');$('#lc').onclick=()=>navigator.clipboard?.writeText($('#lo').textContent);
-$('#lb').onclick=async()=>{const o=$('#lo');o.textContent='Running...';const caps={secureContext:isSecureContext,camera:!!navigator.mediaDevices?.getUserMedia,wakeLock:!!navigator.wakeLock,webCrypto:!!crypto.subtle,workers:typeof Worker!=='undefined',cores:navigator.hardwareConcurrency,memGB:navigator.deviceMemory,screen:screen.width+'x'+screen.height+'@'+devicePixelRatio,ua:navigator.userAgent},rows=[];
-for(const k in PROF){const [bs,ms,ecc]=PROF[k];await new Promise(r=>setTimeout(r,20));const size=1<<20,K=KOF(size,bs),pd=rnd(K*bs),d=new Dec(K,bs);let n=0,t=performance.now();for(let s=0;!d.done&&s<K*4;s++){const p=new Uint8Array(bs);for(const i of idxs(s,K))xor(p,pd.subarray(i*bs,(i+1)*bs));if(Math.random()<.25)continue;n++;d.add(s,p)}const cod=performance.now()-t,pay=crypto.getRandomValues(new Uint8Array(bs+HL+4));t=performance.now();for(let i=0;i<10;i++){const q=qrcode(0,ecc);q.addData(b2s(pay),'Byte');q.make()}const qr=(performance.now()-t)/10,shown=n/.75;rows.push({profile:k,blockB:bs,intervalMs:ms,qrGenMs:+qr.toFixed(1),keepsUp:qr<ms,codecMBps:+(size/1048576/(cod/1000)).toFixed(1),overheadPct:+(n/K*100-100).toFixed(1),modelledGoodputKBps:+(size/1024/(shown*Math.max(ms,qr)/1000)).toFixed(1)})}
-o.textContent=JSON.stringify({note:'Modelled: assumes 25% frames lost and every shown frame readable by the camera. Real camera speed must be measured in a transfer.',caps,rows},null,1)};
-let swOK=false;function badge(){let c=false;try{c=!!(localStorage.getItem('al:jsQR')&&localStorage.getItem('al:qrcode'))}catch{}const f=typeof location!=='undefined'&&location.protocol==='file:';$('#off').textContent=c&&(swOK||f)?'Offline ready: libraries cached'+(f?' (local file)':' and app worker active'):c?'Libraries cached. For full offline, host this file as index.html together with sw.js.':'Online only for now. Download this file or host it with sw.js to enable offline use.'}
-try{if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{swOK=true;badge()}).catch(()=>{})}catch{}
-Promise.resolve(window.libs).then(badge);$('#fs').onclick=()=>$('#qr').requestFullscreen?.();
-$('#bC').onclick=()=>{show('send');$('#recv').classList.remove('hide');$('#msg').focus()};
-$('#sm').onclick=()=>{const t=$('#msg').value.trim();if(!t)return;file=new File([t],'airlink-chat.txt',{type:'text/plain'});$('#finfo').textContent='Beaming message ('+new Blob([t]).size+' bytes)';$('#go').onclick();$('#msg').value=''};
-$('#msg').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#sm').click()}};
-$('#pa').onclick=()=>{paused=!paused;$('#pa').textContent=paused?'Resume':'Pause'};
-$('#cx').onclick=()=>{clearInterval(timer);lock?.release?.();show('home')};
-/* ---- receiver ---- */
-let roi=null,misses=0,det=0,stream,raf,dec,cur,metaI,t0r,nf=0,bad=0,tf=performance.now(),lastRaw='';
-const msg=t=>$('#rMsg').textContent=t;
-$('#cam').onclick=async()=>{await window.libs;if(typeof jsQR==='undefined'){msg('The QR decoder library (jsQR) could not be loaded from the CDN. Check your internet connection or content blocker, then reload.');return}try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080},frameRate:{ideal:60}}});const v=$('#v');v.srcObject=stream;await v.play();
-const tr=stream.getVideoTracks()[0];if(tr.getCapabilities?.().torch){$('#tor').classList.remove('hide');let on=0;$('#tor').onclick=()=>tr.applyConstraints({advanced:[{torch:on=!on}]})}
-try{await navigator.wakeLock?.request('screen')}catch{}msg('Scanning. Point at the sender\'s QR code.');cur=null;dec=null;nf=0;bad=0;tf=performance.now();loop()}catch(e){msg('Camera unavailable: '+e.name+'. '+(self!==top?'This page is embedded in a frame that blocks camera access. Download the HTML file and open it directly, or host it on HTTPS (GitHub Pages, Netlify).':'Allow camera permission for this site in the browser settings, and close other apps using the camera.'))}};
-$('#stop').onclick=()=>{cancelAnimationFrame(raf);stream?.getTracks().forEach(t=>t.stop());show('home')};
-function loop(){raf=requestAnimationFrame(loop);const v=$('#v');if(v.readyState<2)return;const sc=Math.min(1,1280/v.videoWidth),w=v.videoWidth*sc|0,h=v.videoHeight*sc|0,cv=$('#cv'),x=cv.getContext('2d',{willReadFrequently:true});let sx=0,sy=0,sw=w,sh=h;if(roi&&misses<3){sx=roi.x;sy=roi.y;sw=roi.w;sh=roi.h}cv.width=sw;cv.height=sh;x.drawImage(v,sx/sc,sy/sc,sw/sc,sh/sc,0,0,sw,sh);
-const r=jsQR(x.getImageData(0,0,sw,sh).data,sw,sh,{inversionAttempts:'dontInvert'});
-if(r&&r.binaryData&&r.location){const l=r.location,P=[l.topLeftCorner,l.topRightCorner,l.bottomLeftCorner,l.bottomRightCorner],a=Math.min(...P.map(p=>p.x))+sx,b=Math.max(...P.map(p=>p.x))+sx,c=Math.min(...P.map(p=>p.y))+sy,d=Math.max(...P.map(p=>p.y))+sy,pad=Math.max(b-a,d-c)*.25,X=Math.max(0,a-pad)|0,Y=Math.max(0,c-pad)|0;roi={x:X,y:Y,w:Math.min(w-X,b-a+2*pad)|0,h:Math.min(h-Y,d-c+2*pad)|0};misses=0}else{misses++;if(misses>=3)roi=null}
-if(!r||!r.binaryData){if(!det&&performance.now()-tf>6000)msg('No QR detected yet. Make the QR fill 1/3 or more of the camera view, 20-40 cm away, full screen brightness, no glare, hold steady. Try the Safe profile.');return}det++;const f=open(Uint8Array.from(r.binaryData));$('#rQ').textContent=det+' / '+(nf+(f?1:0));if(!f){bad++;ui();return}
-nf++;if($('#bp').checked)beep();if(cur!==f.tid){if(f.bs<16||f.bs>2900||f.size>1.5e9)return;cur=f.tid;metaI=null;dec=new Dec(KOF(f.size,f.bs),f.bs);dec.size=f.size;t0r=performance.now();$('#dl').classList.add('hide');msg('Receiving transfer '+f.tid.toString(16))}
-if(f.type===0&&f.body.length>=32&&!metaI)metaI={hash:f.body.slice(0,32),name:new TextDecoder().decode(f.body.subarray(32))};
-else if(f.type===1&&f.body.length===dec.bs){if(!dec.add(f.seed,f.body))bad++}
-ui();if(dec.done&&!dec.fin)fin()}
-function ui(){if(!dec)return;$('#rU').textContent=dec.seen.size;$('#rB').textContent=dec.n+'/'+dec.K;$('#pg').value=dec.n/dec.K;$('#rD').textContent=bad;const s=(performance.now()-tf)/1000;$('#rF').textContent=(nf/s).toFixed(1);$('#rT').textContent=Math.round(dec.n*dec.bs/((performance.now()-t0r)/1000)).toLocaleString();const el=(performance.now()-t0r)/1000;wh(dec.n/dec.K,dec.n*dec.bs/Math.max(.001,el));$('#rE').textContent=dec.n?Math.ceil((dec.K-dec.n)*el/dec.n)+' s':'-';const T=performance.now();if(T-sT>500){spark(Math.max(0,dec.n-sN)*dec.bs/((T-sT)/1000));sN=dec.n;sT=T}}
-async function fin(){dec.fin=1;const out=new Uint8Array(dec.K*dec.bs);dec.blk.forEach((b,i)=>out.set(b,i*dec.bs));const data=out.slice(0,dec.size);const h=new Uint8Array(await crypto.subtle.digest('SHA-256',data));
-if(!metaI){msg('Data recovered, but the metadata frame (name and hash) has not been seen yet. Keep scanning.');await new Promise(r=>{const i=setInterval(()=>{if(metaI){clearInterval(i);r()}},200)})}
-const ok=hex(h)===hex(metaI.hash);if(ok&&metaI.name==='airlink-enc.bin'){pend=data;$('#dec').classList.remove('hide');msg('Hash OK (encrypted data). Enter the passphrase and press Decrypt.');return}await done(ok,metaI.name,data)}
-async function done(ok,nm,data){if(ok){wh(1,0);setTimeout(woff,2500)}if(ok&&nm!=='airlink-chat.txt')hist1(nm,data.length,Math.round(data.length/((performance.now()-t0r)/1000)));if(ok)try{navigator.vibrate?.(150)}catch{}msg(ok?`Verified SHA-256 OK: ${safe(metaI.name)} (${dec.size.toLocaleString()} B) in ${((performance.now()-t0r)/1000).toFixed(1)} s. Hash detects corruption, not sender identity.`:'INTEGRITY FAILURE: hash mismatch. Do not use this file.');
-if(ok&&metaI.name==='airlink-chat.txt'){const l=$('#log');l.classList.remove('hide');const p=document.createElement('p');p.textContent=new Date().toLocaleTimeString()+'  '+new TextDecoder().decode(data);l.append(p);l.scrollTop=l.scrollHeight;msg('Message received and verified. Still scanning for the next one.');return}if(ok){const a=$('#dl');a.href=URL.createObjectURL(new Blob([data]));a.download=safe(metaI.name);a.classList.remove('hide');cancelAnimationFrame(raf)}}
-const hst=[];let sN=0,sT=0,AC;
-function spark(v){hst.push(v);if(hst.length>60)hst.shift();const c=$('#spk'),g=c.getContext('2d'),m=Math.max(...hst,1);c.width=300;g.fillStyle='#22d3ee';hst.forEach((h,i)=>g.fillRect(i*5,50-h/m*48,4,h/m*48))}
-function beep(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=880;g.gain.value=.03;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+.03)}catch{}}
-function hist1(n,sz,sp){if(!$('#hist').checked)return;try{const a=JSON.parse(localStorage.getItem('al:h')||'[]');a.unshift({t:Date.now(),n,sz,sp});localStorage.setItem('al:h',JSON.stringify(a.slice(0,20)));showHist()}catch{}}
-function showHist(){try{const a=JSON.parse(localStorage.getItem('al:h')||'[]'),l=$('#hl');l.textContent=a.length?'':'No activity saved.';a.forEach(e=>{const p=document.createElement('div');p.textContent=new Date(e.t).toLocaleString()+' | '+e.n+' | '+e.sz+' B | '+e.sp+' B/s';l.append(p)})}catch{}}
-$('#hc').onclick=()=>{try{localStorage.removeItem('al:h')}catch{}showHist()};showHist();
-$('#th').onclick=()=>{const d=document.documentElement;d.dataset.theme=d.dataset.theme==='light'?'dark':'light'};
-function wh(p,rate){const w=$('#wheel');w.classList.add('on');$('#wp').setAttribute?.('stroke-dashoffset',(2136.3*(1-Math.max(0,Math.min(1,p)))).toFixed(1));w.style.setProperty?.('--wd',Math.max(1.2,Math.min(12,12-3*Math.log10(1+Math.max(0,rate||0)))).toFixed(2)+'s')}
-function woff(){$('#wheel').classList.remove('on')}
-const act=id=>{['nvH','nvS','nvC','nvR','nvL'].forEach(i=>$('#'+i).classList.toggle('act',i===id));if(id==='nvH')woff()};
-const wr=(id,nv)=>{const o=$('#'+id).onclick;$('#'+id).onclick=function(){const r=o&&o.apply(this,arguments);act(nv);return r}};
-wr('bS','nvS');wr('bR','nvR');wr('bC','nvC');wr('bL','nvL');wr('stop','nvH');wr('cx','nvH');wr('lx','nvH');
-$('#nvH').onclick=()=>{show('home');act('nvH')};['S','R','C','L'].forEach(k=>$('#nv'+k).onclick=$('#b'+k).onclick);(()=>{const b=$('#boot'),T=['ANURAG AIRLINK // QR BEAM','> OPTICAL LINK ........ ONLINE','> FOUNTAIN CODEC ...... NOMINAL','> CRYPTO CORE ......... ARMED','> ALL SYSTEMS READY'],off=()=>b.classList.add('off');let i=0;b.onclick=off;if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-reduced-motion:reduce)').matches)return off();const t=setInterval(()=>{if(i>=T.length){clearInterval(t);setTimeout(off,500);return}$('#bt').textContent+=T[i++]+'\n'},300)})();
-Object.entries({CAMERA:!!navigator.mediaDevices?.getUserMedia,CRYPTO:!!(window.crypto&&crypto.subtle),WAKELOCK:!!navigator.wakeLock,SECURE:!!window.isSecureContext}).forEach(([k,v])=>{const s=document.createElement('span');s.className='chip '+(v?'ok':'no');s.textContent=(v?'\u25CF ':'\u25CB ')+k;$('#sys').append(s)});
-if(window.addEventListener&&!(typeof matchMedia!=='undefined'&&(matchMedia('(pointer:coarse)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches))){const m=document.querySelector('main');addEventListener('pointermove',e=>{const busy=!$('#send').classList.contains('hide')||!$('#recv').classList.contains('hide');m.style.transform=busy?'':'perspective(1400px) rotateY('+((e.clientX/innerWidth-.5)*3).toFixed(2)+'deg) rotateX('+((.5-e.clientY/innerHeight)*2).toFixed(2)+'deg)'},{passive:true})}
-act('nvH');
+'use strict';
+const $=id=>document.getElementById(id);
+let pc=null,dc=null,role=null,selectedFile=null,rxMeta=null,rxParts=[],rxBytes=0,rxStart=0,txStart=0,txBytes=0,txBusy=false;
+const CHUNK=16*1024, HIGH_WATER=1024*1024, LOW_WATER=256*1024;
+const fmt=n=>{if(!Number.isFinite(n))return '0 B';const u=['B','KB','MB','GB'];let i=0;while(n>=1024&&i<u.length-1){n/=1024;i++}return n.toFixed(i?2:0)+' '+u[i]};
+function status(s){$('status').textContent=s}
+function setState(s){$('state').textContent='● '+s}
+function waitIce(peer){return new Promise((resolve,reject)=>{if(peer.iceGatheringState==='complete')return resolve();const timer=setTimeout(()=>reject(new Error('ICE gathering timed out. Try again on a stable connection.')),25000);peer.addEventListener('icegatheringstatechange',()=>{if(peer.iceGatheringState==='complete'){clearTimeout(timer);resolve()} });})}
+function newPeer(asSender){
+ if(pc)pc.close();pc=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun.cloudflare.com:3478'}]});
+ pc.onconnectionstatechange=()=>{setState(pc.connectionState);if(pc.connectionState==='failed')status('Direct connection failed. This network may require a TURN relay.');if(pc.connectionState==='disconnected')status('Connection interrupted. Waiting for recovery...')};
+ pc.oniceconnectionstatechange=()=>{if(pc.iceConnectionState==='failed')status('ICE connection failed. Try a different network or add a TURN relay.');};
+ if(asSender){dc=pc.createDataChannel('airlink-image',{ordered:true});setupChannel(dc)}
+ else pc.ondatachannel=e=>{dc=e.channel;setupChannel(dc)};
+ return pc;
+}
+function setupChannel(ch){
+ ch.binaryType='arraybuffer';ch.bufferedAmountLowThreshold=LOW_WATER;
+ ch.onopen=()=>{setState('Connected');$('send').disabled=false;$('cancel').disabled=false;status('Secure WebRTC data channel connected. Choose an image and send it.')};
+ ch.onclose=()=>{setState('Disconnected');$('send').disabled=true;status('Data channel closed.')};
+ ch.onerror=()=>status('Data channel error.');
+ ch.onmessage=handleMessage;
+}
+function packHeader(obj){return new TextEncoder().encode(JSON.stringify(obj))}
+async function createOffer(){
+ try{role='sender';newPeer(true);const offer=await pc.createOffer();await pc.setLocalDescription(offer);status('Gathering network routes...');await waitIce(pc);$('offerOut').value=JSON.stringify(pc.localDescription);$('copyOffer').disabled=false;status('Offer ready. Copy it to the receiving device.');}
+ catch(e){status('Offer error: '+e.message)}
+}
+async function createAnswer(){
+ try{role='receiver';const raw=$('offerIn').value.trim();if(!raw)throw Error('Paste the sender offer first.');const offer=JSON.parse(raw);newPeer(false);await pc.setRemoteDescription(offer);const answer=await pc.createAnswer();await pc.setLocalDescription(answer);status('Gathering network routes...');await waitIce(pc);$('answerOut').value=JSON.stringify(pc.localDescription);$('copyAnswer').disabled=false;status('Answer ready. Send it back to the sender.');}
+ catch(e){status('Answer error: '+e.message)}
+}
+async function applyAnswer(){
+ try{if(!pc||role!=='sender')throw Error('Create an offer on this device first.');const raw=$('answerIn').value.trim();if(!raw)throw Error('Paste the receiver answer first.');await pc.setRemoteDescription(JSON.parse(raw));status('Answer applied. Connecting devices...');}
+ catch(e){status('Answer error: '+e.message)}
+}
+async function copy(id){try{await navigator.clipboard.writeText($(id).value);status('Copied to clipboard.')}catch{status('Clipboard unavailable. Select and copy the text manually.')}}
+$('makeOffer').onclick=createOffer;$('makeAnswer').onclick=createAnswer;$('applyAnswer').onclick=applyAnswer;
+$('copyOffer').onclick=()=>copy('offerOut');$('copyAnswer').onclick=()=>copy('answerOut');
+$('file').onchange=()=>{selectedFile=$('file').files[0]||null;$('fileInfo').textContent=selectedFile?`${selectedFile.name} · ${fmt(selectedFile.size)} · ${selectedFile.type||'image'}`:'Choose an image.';$('send').disabled=!selectedFile||!dc||dc.readyState!=='open'};
+$('send').onclick=sendFile;
+function waitBuffer(){if(!dc||dc.readyState!=='open')return Promise.reject(Error('Connection is not open.'));if(dc.bufferedAmount<=HIGH_WATER)return Promise.resolve();return new Promise(resolve=>{dc.addEventListener('bufferedamountlow',resolve,{once:true})})}
+async function sendFile(){
+ if(!selectedFile||!dc||dc.readyState!=='open')return;
+ $('send').disabled=true;txStart=performance.now();txBytes=0;const id=crypto.randomUUID();
+ try{
+  const digest=await crypto.subtle.digest('SHA-256',await selectedFile.arrayBuffer());
+  const hash=[...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const meta={kind:'meta',id,name:selectedFile.name,type:selectedFile.type||'application/octet-stream',size:selectedFile.size,chunk:CHUNK,hash};
+  dc.send(packHeader(meta));
+  const reader=selectedFile.stream().getReader();let seq=0;
+  while(true){const {value,done}=await reader.read();if(done)break;
+   for(let off=0;off<value.length;off+=CHUNK){await waitBuffer();if(dc.readyState!=='open')throw Error('Connection closed during transfer.');const part=value.subarray(off,Math.min(off+CHUNK,value.length));const packet=new Uint8Array(4+part.length);new DataView(packet.buffer).setUint32(0,seq++);packet.set(part,4);dc.send(packet);txBytes+=part.length;updateTx();}
+  }
+  await waitBuffer();dc.send(packHeader({kind:'end',id,chunks:seq}));status('Image sent. Waiting for receiver verification.');
+ }catch(e){status('Transfer stopped: '+e.message)}
+ finally{$('send').disabled=!(dc&&dc.readyState==='open'&&selectedFile)}
+}
+function updateTx(){const elapsed=Math.max(.001,(performance.now()-txStart)/1000);$('progress').value=selectedFile?txBytes/selectedFile.size:0;$('bytes').textContent=fmt(txBytes);$('speed').textContent=fmt(txBytes/elapsed)+'/s';$('elapsed').textContent=elapsed.toFixed(1)+' s'}
+async function handleMessage(e){
+ if(typeof e.data==='string'||e.data instanceof ArrayBuffer&&e.data.byteLength<4096){
+  let m;try{m=JSON.parse(typeof e.data==='string'?e.data:new TextDecoder().decode(e.data))}catch{return}
+  if(m.kind==='meta'){rxMeta=m;rxParts=[];rxBytes=0;rxStart=performance.now();$('download').classList.add('hidden');$('preview').classList.add('hidden');$('progress').value=0;$('bytes').textContent='0 B';status('Receiving '+m.name+' ('+fmt(m.size)+')');return}
+  if(m.kind==='end'&&rxMeta&&m.id===rxMeta.id){await finishReceive();return}
+  return;
+ }
+ if(!rxMeta)return;
+ const packet=new Uint8Array(e.data);if(packet.length<4)return;
+ const part=packet.subarray(4);rxParts.push(part.slice());rxBytes+=part.length;
+ $('progress').value=Math.min(1,rxBytes/rxMeta.size);$('bytes').textContent=fmt(rxBytes);
+ const elapsed=Math.max(.001,(performance.now()-rxStart)/1000);$('speed').textContent=fmt(rxBytes/elapsed)+'/s';$('elapsed').textContent=elapsed.toFixed(1)+' s';
+}
+async function finishReceive(){
+ try{
+  if(rxBytes!==rxMeta.size)throw Error('Size mismatch: expected '+rxMeta.size+' bytes, received '+rxBytes+'.');
+  const blob=new Blob(rxParts,{type:rxMeta.type});const digest=await crypto.subtle.digest('SHA-256',await blob.arrayBuffer());
+  const hash=[...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  if(hash!==rxMeta.hash)throw Error('SHA-256 verification failed. Do not use this file.');
+  const url=URL.createObjectURL(blob);$('download').href=url;$('download').download=rxMeta.name;$('download').classList.remove('hidden');
+  if(rxMeta.type.startsWith('image/')){$('preview').src=url;$('preview').classList.remove('hidden')}
+  status('Verified successfully. '+rxMeta.name+' · '+fmt(rxBytes)+' · SHA-256 OK.');
+ }catch(e){status('Receive verification error: '+e.message)}
+}
+$('cancel').onclick=()=>{if(pc)pc.close();pc=null;dc=null;setState('Disconnected');$('send').disabled=true;$('cancel').disabled=true;status('Connection closed.')}
 </script></body></html>
